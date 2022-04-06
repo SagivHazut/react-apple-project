@@ -1,21 +1,20 @@
 import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import "./NavBarComponent.css";
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
-import cookie from "js-cookie";
-
-const NavBarComponent = (props) => {
-  const handleLogout = (e) => {
-    e.preventDefault();
-    cookie.remove("token");
-    props.logout();
-  };
+// import { Link } from "react-router-dom";
+// import cookie from "js-cookie";
+import apple from "../../assets/apple.png";
+const NavBarComponent = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light ">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
-          Navbar
+          <img
+            src={apple}
+            alt="appleicon"
+            style={{ width: "30px", height: "30px" }}
+          />
         </NavLink>
         <button
           className="navbar-toggler"
@@ -49,55 +48,44 @@ const NavBarComponent = (props) => {
               Cards Panel
             </NavLink>
           </ul>
-          {!props.loggedIn ? (
-            <Fragment>
-              <ul className="navbar-nav justify-content-end mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <NavLink
-                    className="nav-link "
-                    aria-current="page"
-                    to="/login"
-                    activeClassName="activeLink"
-                  >
-                    Login
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink
-                    className="nav-link"
-                    aria-current="page"
-                    to="/signup"
-                    activeClassName="activeLink"
-                  >
-                    Register
-                  </NavLink>
-                </li>
-              </ul>
-            </Fragment>
-          ) : (
+          {/* ( */}
+          <Fragment>
             <ul className="navbar-nav justify-content-end mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link" to="/logout" onClick={handleLogout}>
-                  Logout
-                </Link>
+                <NavLink
+                  className="nav-link "
+                  aria-current="page"
+                  to="/login"
+                  activeClassName="activeLink"
+                >
+                  Login
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link"
+                  aria-current="page"
+                  to="/signup"
+                  activeClassName="activeLink"
+                >
+                  Register
+                </NavLink>
               </li>
             </ul>
-          )}
+          </Fragment>
+          {/* ) : (
+          <ul className="navbar-nav justify-content-end mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link" to="/logout" onClick={}>
+                Logout
+              </Link>
+            </li>
+          </ul>
+          ) */}
         </div>
       </div>
-      {props.children}
     </nav>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    loggedIn: state.auth.loggedIn,
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    logout: () => dispatch({ type: "SET_LOGOUT" }),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(NavBarComponent);
+export default NavBarComponent;

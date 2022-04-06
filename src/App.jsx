@@ -28,9 +28,9 @@ function App() {
           {/* http://localhost:3000/home */}
           <Route path="/home" component={HomePage} />
           {/* http://localhost:3000/login */}
-          <AuthRegister path="/login" component={LoginPage} />
+          <Route path="/login" component={LoginPage} />
           {/* http://localhost:3000/signup */}
-          <AuthRegister path="/signup" component={SignupPage} />
+          <Route path="/signup" component={SignupPage} />
           {/* http://localhost:3000/cardspanel */}
           <AuthGuardRoute path="/cardregister" component={CardRegister} />
           <Route path="/cardspanel" component={CardsPanelPage} />

@@ -30,7 +30,7 @@ const CardRegister = () => {
       .post("/cards/", { name, description, phone, image })
       .then((res) => {
         console.log("res.data", res.data);
-        history.push("/login", { description, phone });
+        history.push("/cardspanel", { description, phone });
       })
       .catch((err) => {
         console.log("err", err);
