@@ -8,7 +8,7 @@ import jwt_decode from "jwt-decode";
 import loginSchema from "../validation/login.validation";
 import { authActions } from "../store/auth";
 import "./LoginPage.css";
-
+import apple from "../assets/applelogo.png";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -106,7 +106,7 @@ const LoginPage = () => {
         <div id="formContent">
           <br />
           <div className="fadeIn first">
-            {/* <img src={dog2} id="icon" alt="" /> */}
+            <img src={apple} id="icon" alt="" />
           </div>
           <br />
           <h2>Login to your account</h2>
@@ -134,7 +134,7 @@ const LoginPage = () => {
             ></input>
             <br />
             <br />
-            <button className="btn btn-danger">login</button>
+            <button className="btn btn-danger">Log In</button>
           </div>
           <br />
         </div>

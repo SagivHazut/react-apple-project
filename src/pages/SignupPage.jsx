@@ -1,6 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import apple from "../assets/applelogo.png";
+import { toast } from "react-toastify";
+import { authActions } from "../store/auth";
+
 const SignupPage = () => {
   const history = useHistory();
 
@@ -33,7 +37,11 @@ const SignupPage = () => {
         history.push("/login", { email, password });
       })
       .catch((err) => {
-        console.log("err", err);
+        toast.error(err.response.data);
+        if (err.response) {
+          // alert(err.response.data);
+          console.log(err.response.data);
+        }
       });
   };
 
@@ -43,7 +51,7 @@ const SignupPage = () => {
         <form onSubmit={handleSignup}>
           <br />
           <div class="fadeIn first">
-            {/* <img src={dog2} id="icon" alt="" /> */}
+            <img src={apple} id="icon" alt="" />
           </div>
           <br />
           <div className="mb-3">
@@ -99,11 +107,11 @@ const SignupPage = () => {
               checked={biz}
             />
             <label className="form-check-label" htmlFor="exampleCheck1">
-              Check me out
+              Business User
             </label>
           </div>
           <button type="submit" className="btn btn-danger">
-            Submit
+            Sign Up
           </button>
         </form>
         <br />

@@ -3,13 +3,14 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const CardRegister = () => {
+const CardUpdate = (props) => {
   const history = useHistory();
 
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [phone, setPhone] = useState("");
-  const [image, setImage] = useState();
+  const [name, setName] = useState(props.name);
+  const [description, setDescription] = useState(props.description);
+  const [phone, setPhone] = useState(props.phone);
+  const [image, setImage] = useState(props.image);
+  const URL = "http://localhost:8181/api/cards/";
 
   const handleNameChange = (ev) => {
     setName(ev.target.value);
@@ -23,42 +24,37 @@ const CardRegister = () => {
   const handleImageChange = (ev) => {
     setImage(ev.target.value);
   };
-
-  const handleSignup = (ev) => {
+  const handleUpdate = (ev) => {
     ev.preventDefault();
-    //add joi validation
-    axios
-      .post("/cards/", { name, description, phone, image })
-      .then((res) => {
-        console.log("res.data", res.data);
-        history.push("/cardspanel", { description, phone });
-      })
-      .catch((err) => {
-        toast.error(err.response.data);
-        if (err.response) {
-          // alert(err.response.data);
-          console.log(err.response.data);
-        }
-      });
+    props.onUpdateUser(
+      axios
+        .patch(`${URL}${props.id}`, { name, description, phone, image })
+        .then(() => {})
+        .catch((err) => {
+          toast.error(err.response.data);
+          if (err.response) {
+          }
+        })
+    );
   };
 
   return (
     <div class="wrapper fadeInDown">
-      <h1>Card Maker</h1>
+      <h1>Edit Card</h1>
       <div id="formContent">
-        <form onSubmit={handleSignup}>
+        <form onSubmit={handleUpdate}>
           <br />
           <div class="fadeIn first"></div>
           <br />
           <div className="mb-3">
-            <label htmlFor="exampleInputName1" className="form-label">
+            <label htmlFor="exampleInputName" className="form-label">
               Name
             </label>
             <br />
             <input
               type="text"
               className="form-control"
-              id="exampleInputName1"
+              id="exampleInputName"
               onChange={handleNameChange}
               value={name}
               required
@@ -107,15 +103,16 @@ const CardRegister = () => {
             />
           </div>
 
-          <button type="submit" className="btn btn-danger">
-            Create a New Card
-          </button>
+          <div style={{ textAlign: "center" }}>
+            <button type="submit" className="btn btn-danger btn-lg">
+              Edit
+            </button>
+          </div>
         </form>
-
         <br />
       </div>
     </div>
   );
 };
 
-export default CardRegister;
+export default CardUpdate;

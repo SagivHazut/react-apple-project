@@ -1,21 +1,26 @@
 import "./CardComponent.css";
+import { useHistory } from "react-router-dom";
 
 const CardComponent = (props) => {
+  const history = useHistory();
+
   const handleDeleteClick = () => {
-    console.log("BizCard clicked", props);
     props.onDeleteCard(props.id);
+  };
+  const handleEditClick = () => {
+    props.onEditCard(props.id);
   };
 
   return (
-    <div className="col">
-      <div className="card h-100">
+    <div className="col  ">
+      <div className="card h-100  ">
         <img
           style={{ textAlign: "center" }}
           src={props.image}
-          className="card-img-top"
+          className="card-img-top "
           alt="..."
         />
-        <div style={{ textAlign: "center" }} className="card-body">
+        <div style={{ textAlign: "center" }} className="card-body ">
           <h5 style={{ textAlign: "center" }} className="card-title">
             {props.name}
           </h5>
@@ -30,10 +35,20 @@ const CardComponent = (props) => {
           </h6>
         </div>
         {props.userIDCard === props.userIDLoggedIn ? (
-          <div style={{ textAlign: "left" }} className="card-footer">
+          <div
+            style={{ justifyContent: "space-between", display: "flex" }}
+            className="card-footer"
+          >
             <button
               type="button"
-              className="btn btn-danger"
+              className="btn btn-outline-primary"
+              onClick={handleEditClick}
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              className="btn btn-outline-danger"
               onClick={handleDeleteClick}
             >
               Delete

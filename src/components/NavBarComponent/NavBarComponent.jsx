@@ -1,11 +1,14 @@
 import { NavLink } from "react-router-dom";
-// import { connect } from "react-redux";
 import "./NavBarComponent.css";
-import { Fragment } from "react";
-// import { Link } from "react-router-dom";
-// import cookie from "js-cookie";
+import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import apple from "../../assets/apple.png";
-const NavBarComponent = () => {
+
+const NavBarComponent = (props) => {
+  const history = useHistory();
+  const userInfoRedux = useSelector((state) => state.auth.userData);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light ">
       <div className="container-fluid">
@@ -48,8 +51,20 @@ const NavBarComponent = () => {
               Cards Panel
             </NavLink>
           </ul>
-          {/* ( */}
-          <Fragment>
+          {userInfoRedux._id !== props.userIDLoggedIn ? (
+            <ul className="navbar-nav justify-content-end mb-2 mb-lg-0">
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link "
+                  aria-current="page"
+                  to="/logout"
+                  activeClassName="activeLink"
+                >
+                  Logout
+                </NavLink>
+              </li>
+            </ul>
+          ) : (
             <ul className="navbar-nav justify-content-end mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink
@@ -72,16 +87,7 @@ const NavBarComponent = () => {
                 </NavLink>
               </li>
             </ul>
-          </Fragment>
-          {/* ) : (
-          <ul className="navbar-nav justify-content-end mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link" to="/logout" onClick={}>
-                Logout
-              </Link>
-            </li>
-          </ul>
-          ) */}
+          )}
         </div>
       </div>
     </nav>

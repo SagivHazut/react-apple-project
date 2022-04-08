@@ -2,6 +2,9 @@
   text-align: center;
   background-color: #fafafa;
 }
+.iphone13 img {
+  max-width: 50%;
+}
 .iphone13 h4 {
   color: gray;
 }
@@ -9,8 +12,14 @@
   text-align: center;
   background-color: #ffffff;
 }
+.iphoneSE img {
+  max-width: 50%;
+}
 .iphoneSE h4 {
   color: gray;
+}
+.watch7 img {
+  max-width: 100%;
 }
 .watch7 {
   text-align: center;
@@ -42,6 +51,12 @@
   height: 100%;
   z-index: 1;
 }
+.studio {
+  background-color: #fafafa;
+}
+.macstudio {
+  background-color: #fafafa;
+}
 .macstudio img {
   width: 49.2vw;
   height: 100%;
@@ -66,5 +81,4 @@
   display: flex;
   justify-content: space-between;
   background-color: white;
-  background-color: #fafafa;
 }

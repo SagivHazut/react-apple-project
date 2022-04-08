@@ -13,6 +13,8 @@ import QueryParams from "./pages/QueryParams";
 import CardRegister from "./pages/CardsRegister";
 import AuthRegister from "./components/AuthRegister";
 // import SignupPage from "./pages/SignupPage";
+import Footer from "./pages/Footer";
+import CardUpdate from "./pages/CardUpdate";
 const SignupPage = React.lazy(() => import("./pages/SignupPage"));
 function App() {
   return (
@@ -28,17 +30,21 @@ function App() {
           {/* http://localhost:3000/home */}
           <Route path="/home" component={HomePage} />
           {/* http://localhost:3000/login */}
-          <Route path="/login" component={LoginPage} />
+          <AuthRegister path="/login" component={LoginPage} />
           {/* http://localhost:3000/signup */}
-          <Route path="/signup" component={SignupPage} />
+          <AuthRegister path="/signup" component={SignupPage} />
           {/* http://localhost:3000/cardspanel */}
           <AuthGuardRoute path="/cardregister" component={CardRegister} />
           <Route path="/cardspanel" component={CardsPanelPage} />
           <Route path="/card/:id" component={CardInfoPage} />
+          <AuthGuardRoute path="/CardUpdate" component={CardUpdate} />
+
           <Route path="/qparams" component={QueryParams} />
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </Suspense>
+
+      <Footer></Footer>
     </div>
   );
 }
