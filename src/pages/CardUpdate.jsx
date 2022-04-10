@@ -27,7 +27,9 @@ const CardUpdate = (props) => {
     props.onUpdateUser(
       axios
         .patch(`${URL}${props.id}`, { name, description, phone, image })
-        .then(() => {})
+        .then((res) => {
+          console.log(res.data);
+        })
         .catch((err) => {
           toast.error(err.response.data);
           if (err.response) {
@@ -76,8 +78,8 @@ const CardUpdate = (props) => {
           </div>
           <div className="mb-3">
             <label htmlFor="exampleInputPhone1" className="form-label">
-              Phone
-            </label>{" "}
+              Price
+            </label>
             <br />
             <input
               type="text"

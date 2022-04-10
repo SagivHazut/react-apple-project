@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import "./NavBarComponent.css";
-import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../store/auth";
 import apple from "../../assets/apple.png";
@@ -8,7 +7,6 @@ import apple from "../../assets/apple.png";
 const NavBarComponent = (props) => {
   const dispatch = useDispatch();
 
-  const userInfoRedux = useSelector((state) => state.auth.userData);
   const IsloggedInRedux = useSelector((state) => state.auth.loggedIn);
 
   let logout = () => {
@@ -46,6 +44,16 @@ const NavBarComponent = (props) => {
                 activeClassName="activeLink"
               >
                 Home
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                aria-current="page"
+                to="/aboutpage"
+                activeClassName="activeLink"
+              >
+                About
               </NavLink>
             </li>
             <NavLink

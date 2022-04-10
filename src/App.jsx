@@ -12,6 +12,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import QueryParams from "./pages/QueryParams";
 import CardRegister from "./pages/CardsRegister";
 import AuthRegister from "./components/AuthRegister";
+import AboutPage from "./pages/Aboutpage";
 // import SignupPage from "./pages/SignupPage";
 import Footer from "./pages/Footer";
 import CardUpdate from "./pages/CardUpdate";
@@ -37,6 +38,7 @@ function App() {
           <AuthGuardRoute path="/cardregister" component={CardRegister} />
           <Route path="/cardspanel" component={CardsPanelPage} />
           <Route path="/card/:id" component={CardInfoPage} />
+          <Route path="/aboutpage" component={AboutPage} />
           <AuthGuardRoute path="/CardUpdate" component={CardUpdate} />
 
           <Route path="/qparams" component={QueryParams} />

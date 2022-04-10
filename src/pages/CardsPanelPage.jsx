@@ -71,6 +71,7 @@ const CardsPanelPage = (props) => {
                 onDeleteCard={() => handleDeleteCard(item._id)}
                 onEditCard={handleEditUser}
               />
+
               {userInfoRedux._id === item.userID && IsloggedInRedux === true ? (
                 <CardUpdate
                   name={item.name}

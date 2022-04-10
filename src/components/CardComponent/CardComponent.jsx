@@ -1,14 +1,13 @@
 import "./CardComponent.css";
-import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const CardComponent = (props) => {
-  const history = useHistory();
   const IsloggedInRedux = useSelector((state) => state.auth.loggedIn);
 
   const handleDeleteClick = () => {
     props.onDeleteCard(props.id);
   };
+
   const handleEditClick = () => {
     props.onEditCard(props.id);
   };
