@@ -3,7 +3,6 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import apple from "../assets/applelogo.png";
 import { toast } from "react-toastify";
-import { authActions } from "../store/auth";
 
 const SignupPage = () => {
   const history = useHistory();
@@ -46,11 +45,11 @@ const SignupPage = () => {
   };
 
   return (
-    <div class="wrapper fadeInDown">
+    <div className="wrapper fadeInDown">
       <div id="formContent">
         <form onSubmit={handleSignup}>
           <br />
-          <div class="fadeIn first">
+          <div className="fadeIn first">
             <img src={apple} id="icon" alt="" />
           </div>
           <br />

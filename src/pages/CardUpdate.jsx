@@ -1,11 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const CardUpdate = (props) => {
-  const history = useHistory();
-
   const [name, setName] = useState(props.name);
   const [description, setDescription] = useState(props.description);
   const [phone, setPhone] = useState(props.phone);
@@ -24,6 +21,7 @@ const CardUpdate = (props) => {
   const handleImageChange = (ev) => {
     setImage(ev.target.value);
   };
+
   const handleUpdate = (ev) => {
     ev.preventDefault();
     props.onUpdateUser(
@@ -33,18 +31,20 @@ const CardUpdate = (props) => {
         .catch((err) => {
           toast.error(err.response.data);
           if (err.response) {
+            // alert(err.response.data);
+            console.log(err.response.data);
           }
         })
     );
   };
 
   return (
-    <div class="wrapper fadeInDown">
-      <h1>Edit Card</h1>
+    <div className="wrapper fadeInDown">
+      <h1>Edit Your Card</h1>
       <div id="formContent">
         <form onSubmit={handleUpdate}>
           <br />
-          <div class="fadeIn first"></div>
+          <div className="fadeIn first"></div>
           <br />
           <div className="mb-3">
             <label htmlFor="exampleInputName" className="form-label">

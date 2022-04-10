@@ -32,6 +32,9 @@ const authSlice = createSlice({
       // console.log("action", action);
       state.userData = action.payload;
     },
+    biz(state) {
+      state.bizNumber = false;
+    },
   },
 });
 

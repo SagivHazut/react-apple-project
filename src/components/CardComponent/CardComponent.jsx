@@ -1,8 +1,10 @@
 import "./CardComponent.css";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const CardComponent = (props) => {
   const history = useHistory();
+  const IsloggedInRedux = useSelector((state) => state.auth.loggedIn);
 
   const handleDeleteClick = () => {
     props.onDeleteCard(props.id);
@@ -34,7 +36,8 @@ const CardComponent = (props) => {
             ₪{props.phone}
           </h6>
         </div>
-        {props.userIDCard === props.userIDLoggedIn ? (
+        {props.userIDCard === props.userIDLoggedIn &&
+        IsloggedInRedux === true ? (
           <div
             style={{ justifyContent: "space-between", display: "flex" }}
             className="card-footer"

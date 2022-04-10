@@ -31,6 +31,7 @@ const CardRegister = () => {
       .post("/cards/", { name, description, phone, image })
       .then((res) => {
         console.log("res.data", res.data);
+
         history.push("/cardspanel", { description, phone });
       })
       .catch((err) => {
@@ -43,12 +44,12 @@ const CardRegister = () => {
   };
 
   return (
-    <div class="wrapper fadeInDown">
+    <div className="wrapper fadeInDown">
       <h1>Card Maker</h1>
       <div id="formContent">
         <form onSubmit={handleSignup}>
           <br />
-          <div class="fadeIn first"></div>
+          <div className="fadeIn first"></div>
           <br />
           <div className="mb-3">
             <label htmlFor="exampleInputName1" className="form-label">

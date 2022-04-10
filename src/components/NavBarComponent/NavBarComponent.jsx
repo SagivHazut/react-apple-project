@@ -1,14 +1,20 @@
 import { NavLink } from "react-router-dom";
 import "./NavBarComponent.css";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { authActions } from "../../store/auth";
 import apple from "../../assets/apple.png";
 
 const NavBarComponent = (props) => {
-  const history = useHistory();
-  const userInfoRedux = useSelector((state) => state.auth.userData);
+  const dispatch = useDispatch();
 
+  const userInfoRedux = useSelector((state) => state.auth.userData);
+  const IsloggedInRedux = useSelector((state) => state.auth.loggedIn);
+
+  let logout = () => {
+    localStorage.clear();
+    dispatch(authActions.logout());
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light ">
       <div className="container-fluid">
@@ -51,14 +57,15 @@ const NavBarComponent = (props) => {
               Cards Panel
             </NavLink>
           </ul>
-          {userInfoRedux._id !== props.userIDLoggedIn ? (
+          {IsloggedInRedux === true ? (
             <ul className="navbar-nav justify-content-end mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink
                   className="nav-link "
                   aria-current="page"
-                  to="/logout"
+                  to="/login"
                   activeClassName="activeLink"
+                  onClick={logout}
                 >
                   Logout
                 </NavLink>

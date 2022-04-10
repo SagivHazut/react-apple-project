@@ -4,13 +4,13 @@ import axios from "axios";
 import CardComponent from "../components/CardComponent/CardComponent";
 import { useHistory } from "react-router-dom";
 import CardUpdate from "./CardUpdate";
-
 const CardsPanelPage = (props) => {
   const history = useHistory();
 
   const URL = "http://localhost:8181/api/cards/";
   const userInfoRedux = useSelector((state) => state.auth.userData);
   const [cardsArr, setCardsArr] = useState([]);
+  const IsloggedInRedux = useSelector((state) => state.auth.loggedIn);
 
   useEffect(() => {
     axios
@@ -23,8 +23,8 @@ const CardsPanelPage = (props) => {
       });
   }, []);
 
-  const [userArr, setUserArr] = useState([]);
-  const [selectedUser, setSelectedUser] = useState([]);
+  const [userArr] = useState([]);
+  const [setSelectedUser] = useState([]);
 
   const handleEditUser = (id) => {
     let newUser = userArr.find((item) => {
@@ -71,7 +71,7 @@ const CardsPanelPage = (props) => {
                 onDeleteCard={() => handleDeleteCard(item._id)}
                 onEditCard={handleEditUser}
               />
-              {props.item === null && (
+              {userInfoRedux._id === item.userID && IsloggedInRedux === true ? (
                 <CardUpdate
                   name={item.name}
                   description={item.description}
@@ -80,13 +80,14 @@ const CardsPanelPage = (props) => {
                   id={item._id}
                   onUpdateUser={handleUpdateUser}
                 ></CardUpdate>
+              ) : (
+                ""
               )}
             </Fragment>
           );
         })}
       </div>
-
-      {props.userIDCard === props.userIDLoggedIn ? (
+      {userInfoRedux.biz === true && (
         <button
           style={{
             display: "flex",
@@ -99,8 +100,6 @@ const CardsPanelPage = (props) => {
         >
           Add a New Card
         </button>
-      ) : (
-        ""
       )}
     </div>
   );
