@@ -1,0 +1,40 @@
+.topdiv h1 {
+  font-weight: 800;
+  font-size: 70px;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+.topdiv p {
+  margin: 0 auto;
+  width: 40%;
+  font-weight: 600;
+  margin: 0 auto;
+  text-align: center;
+}
+.topdiv {
+  margin: 0 auto;
+  text-align: center;
+}
+.topdiv img {
+  width: 90%;
+}
+.middiv img {
+  width: 90%;
+}
+.middiv {
+  text-align: center;
+  margin: 0 auto;
+}
+.middiv h1 {
+  width: 40%;
+  text-align: center;
+  margin: 0 auto;
+}
+.P {
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  font-size: larger;
+  font-weight: 500;
+}

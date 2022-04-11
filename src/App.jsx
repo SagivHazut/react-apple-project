@@ -9,11 +9,9 @@ import CardsPanelPage from "./pages/CardsPanelPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import QueryParams from "./pages/QueryParams";
 import CardRegister from "./pages/CardsRegister";
 import AuthRegister from "./components/AuthRegister";
-import AboutPage from "./pages/Aboutpage";
-// import SignupPage from "./pages/SignupPage";
+import AboutPage from "./pages/AboutPage";
 import Footer from "./pages/Footer";
 import CardUpdate from "./pages/CardUpdate";
 const SignupPage = React.lazy(() => import("./pages/SignupPage"));
@@ -24,24 +22,18 @@ function App() {
       <ToastContainer />
       <Suspense fallback={<div>loading</div>}>
         <Switch>
-          {/* http://localhost:3000/ */}
           <Route path="/" exact>
             <Redirect to="/home" />
           </Route>
-          {/* http://localhost:3000/home */}
           <Route path="/home" component={HomePage} />
-          {/* http://localhost:3000/login */}
           <AuthRegister path="/login" component={LoginPage} />
-          {/* http://localhost:3000/signup */}
           <AuthRegister path="/signup" component={SignupPage} />
-          {/* http://localhost:3000/cardspanel */}
           <AuthGuardRoute path="/cardregister" component={CardRegister} />
           <Route path="/cardspanel" component={CardsPanelPage} />
           <Route path="/card/:id" component={CardInfoPage} />
           <Route path="/aboutpage" component={AboutPage} />
           <AuthGuardRoute path="/CardUpdate" component={CardUpdate} />
 
-          <Route path="/qparams" component={QueryParams} />
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </Suspense>

@@ -4,18 +4,13 @@ import axios from "axios";
 
 const CardInfoPage = () => {
   const { id } = useParams();
-  console.log("id", id);
 
   useEffect(() => {
     axios
       .get(`/cards/card/${id}`)
-      .then((res) => {
-        console.log("res", res);
-      })
+      .then((res) => {})
 
-      .catch((err) => {
-        console.log("err", err);
-      });
+      .catch((err) => {});
   }, [id]);
   return <h1>CardInfoPage</h1>;
 };

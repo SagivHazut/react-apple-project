@@ -22,24 +22,19 @@ const SignupPage = () => {
     setPassword(ev.target.value);
   };
   const handleBizChange = (ev) => {
-    // console.log(ev.target.checked);
     setBiz(ev.target.checked);
   };
 
   const handleSignup = (ev) => {
     ev.preventDefault();
-    //add joi validation
     axios
       .post("/users/register", { name, email, password, biz })
       .then((res) => {
-        console.log("res.data", res.data);
         history.push("/login", { email, password });
       })
       .catch((err) => {
         toast.error(err.response.data);
         if (err.response) {
-          // alert(err.response.data);
-          console.log(err.response.data);
         }
       });
   };

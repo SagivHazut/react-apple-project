@@ -26,19 +26,14 @@ const CardRegister = () => {
 
   const handleSignup = (ev) => {
     ev.preventDefault();
-    //add joi validation
     axios
       .post("/cards/", { name, description, phone, image })
       .then((res) => {
-        console.log("res.data", res.data);
-
         history.push("/cardspanel", { description, phone });
       })
       .catch((err) => {
         toast.error(err.response.data);
         if (err.response) {
-          // alert(err.response.data);
-          console.log(err.response.data);
         }
       });
   };

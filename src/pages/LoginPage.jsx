@@ -14,29 +14,22 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const emailRef = useRef(null);
 
-  //routes
   const history = useHistory();
   const location = useLocation();
 
-  //for redux actions
   const dispatch = useDispatch();
-  const loggedInRedux = useSelector((state) => state.auth.loggedIn);
 
-  //useEffect
   useEffect(() => {
     emailRef.current.focus();
-    console.log("ref");
   }, [emailRef]);
 
   const handleEmailChange = (event) => {
-    // console.log("event", event);
     setEmail(event.target.value);
   };
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
   const handleOnSubmit = (event) => {
-    //prevent the form to do refresh
     if (event) {
       event.preventDefault();
     }
@@ -45,11 +38,9 @@ const LoginPage = () => {
     });
     const { error } = validatedValue;
     if (error) {
-      //invalid email or password
       dispatch(authActions.logout());
       toast.error("Email and/or password incorrect");
     } else {
-      //email and password is good
       axios
         .post("/users/login", {
           email,
@@ -73,8 +64,6 @@ const LoginPage = () => {
         .catch((err) => {
           toast.error("Email and/or password incorrect");
           if (err.response) {
-            // alert(err.response.data);
-            console.log(err.response.data);
           }
           localStorage.clear();
           dispatch(authActions.logout());
@@ -83,7 +72,6 @@ const LoginPage = () => {
   };
 
   const memoizedCallback = useCallback(() => {
-    console.log("location.state", location.state);
     if (location.state) {
       if (location.state.email && location.state.password) {
         if (!email || !password) {

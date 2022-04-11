@@ -6,7 +6,6 @@ const AuthGuardRoute = ({ component: Component, ...rest }) => {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const location = useLocation();
   const [fromPage] = useState(location.pathname);
-  console.log("location.pathname", location.pathname);
   return (
     <Route
       {...rest}

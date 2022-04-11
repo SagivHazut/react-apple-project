@@ -4,7 +4,7 @@ import axios from "axios";
 import CardComponent from "../components/CardComponent/CardComponent";
 import { useHistory } from "react-router-dom";
 import CardUpdate from "./CardUpdate";
-const CardsPanelPage = (props) => {
+const CardsPanelPage = () => {
   const history = useHistory();
 
   const URL = "http://localhost:8181/api/cards/";
@@ -18,32 +18,31 @@ const CardsPanelPage = (props) => {
       .then(({ data }) => {
         setCardsArr(data);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   }, []);
 
   const [userArr] = useState([]);
-  const [setSelectedUser] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   const handleEditUser = (id) => {
     let newUser = userArr.find((item) => {
-      return item.id === id;
+      return item._id === id;
     });
 
-    if (newUser) {
-      setSelectedUser({ ...newUser });
-    }
+    setSelectedUser({ ...newUser });
   };
 
   const handleUpdateUser = (id) => {
     let newCardsArr = cardsArr.filter((item) => item._id !== id);
     setCardsArr(newCardsArr);
+    axios.get("/cards/allCards").then(({ data }) => {
+      setCardsArr(data);
+      setSelectedUser(null);
+    });
   };
 
   const handleDeleteCard = (id) => {
     axios.delete(`${URL}${id}`).then((res) => {
-      console.log("res.data", res.data);
       const newCardsArr = cardsArr.filter((item) => item._id !== id);
       setCardsArr(newCardsArr);
     });
@@ -72,7 +71,9 @@ const CardsPanelPage = (props) => {
                 onEditCard={handleEditUser}
               />
 
-              {userInfoRedux._id === item.userID && IsloggedInRedux === true ? (
+              {userInfoRedux._id === item.userID &&
+              IsloggedInRedux === true &&
+              selectedUser !== null ? (
                 <CardUpdate
                   name={item.name}
                   description={item.description}

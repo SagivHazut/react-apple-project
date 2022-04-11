@@ -25,11 +25,9 @@ const authSlice = createSlice({
       state.loggedIn = false;
     },
     updateToken(state, action) {
-      // console.log("action", action);
       state.token = action.payload;
     },
     updateUser(state, action) {
-      // console.log("action", action);
       state.userData = action.payload;
     },
     biz(state) {
@@ -38,7 +36,6 @@ const authSlice = createSlice({
   },
 });
 
-//export the actions so we can modify the variables from other components
 export const authActions = authSlice.actions;
 
 export default authSlice.reducer;
